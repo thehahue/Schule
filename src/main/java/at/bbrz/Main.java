@@ -1,9 +1,6 @@
 package at.bbrz;
 
-import at.bbrz.schule.Adresse;
-import at.bbrz.schule.Lehrer;
-import at.bbrz.schule.Mitarbeiter;
-import at.bbrz.schule.Schueler;
+import at.bbrz.schule.*;
 
 import java.time.LocalDate;
 
@@ -35,5 +32,12 @@ public class Main {
         lehrer1.addSchueler(fritzi);
 
         System.out.println(lehrer1);
+
+        Chef chef = new Chef("Chef", "Supa", LocalDate.of(1950, 1, 13)
+        ,adresseLehrer1, "C0001", 6000);
+
+        chef.addMitarbeiter(klaus);
+        chef.addMitarbeiter(lehrer1);
+        //chef.addMitarbeiter(chef); -> Wäre ein Zirkelbezug -> Also Exception werfen
     }
 }
