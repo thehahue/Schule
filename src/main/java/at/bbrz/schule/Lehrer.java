@@ -36,10 +36,6 @@ public class Lehrer extends Mitarbeiter {
         this.feacher.add(fach);
     }
 
-    public List<Fach> getFeacher() {
-        return feacher;
-    }
-
     public List<Schueler> getSchueler() {
         return schueler;
     }

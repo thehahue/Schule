@@ -36,10 +36,6 @@ public class Chef extends Lehrer {
         this.mitarbeiter.add(mitarbeiter);
     }
 
-    public List<Mitarbeiter> getMitarbeiter() {
-        return mitarbeiter;
-    }
-
     @Override
     public String toString() {
         return "Chef{" +

@@ -25,26 +25,6 @@ public class Adresse {
         this.land = land;
     }
 
-    public String getStrasze() {
-        return strasze;
-    }
-
-    public String getHausNummer() {
-        return hausNummer;
-    }
-
-    public String getPlz() {
-        return plz;
-    }
-
-    public String getStadt() {
-        return stadt;
-    }
-
-    public Land getLand() {
-        return land;
-    }
-
     @Override
     public String toString() {
         return "Adresse{" +

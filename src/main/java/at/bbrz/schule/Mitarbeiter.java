@@ -27,18 +27,6 @@ public class Mitarbeiter extends Person {
         this.betriebsrat = betriebsrat;
     }
 
-    public String getNummer() {
-        return nummer;
-    }
-
-    public double getGehalt() {
-        return gehalt;
-    }
-
-    public boolean isBetriebsrat() {
-        return betriebsrat;
-    }
-
     @Override
     public String toString() {
         return "Mitarbeiter{" +

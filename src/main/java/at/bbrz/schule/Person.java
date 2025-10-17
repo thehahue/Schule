@@ -26,18 +26,6 @@ public abstract class Person {
         this.adresse = adresse;
     }
 
-    public String getVorname() {
-        return vorname;
-    }
-
-    public String getNachname() {
-        return nachname;
-    }
-
-    public LocalDate getGeburtsDatum() {
-        return geburtsDatum;
-    }
-
     public Adresse getAdresse() {
         return adresse;
     }
