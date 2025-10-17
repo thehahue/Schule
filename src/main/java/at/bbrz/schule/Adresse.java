@@ -10,14 +10,14 @@ public class Adresse {
     private String hausNummer;
     private String plz;
     private String stadt;
-    private String land;
+    private Land land;
 
     @JsonCreator
     public Adresse(@JsonProperty("strasze") String strasze,
                    @JsonProperty("hausNummer") String hausNummer,
                    @JsonProperty("plz") String plz,
                    @JsonProperty("stadt") String stadt,
-                   @JsonProperty("land") String land) {
+                   @JsonProperty("land") Land land) {
         this.strasze = strasze;
         this.hausNummer = hausNummer;
         this.plz = plz;
@@ -41,7 +41,7 @@ public class Adresse {
         return stadt;
     }
 
-    public String getLand() {
+    public Land getLand() {
         return land;
     }
 

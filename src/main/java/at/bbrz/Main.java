@@ -31,7 +31,7 @@ public class Main {
             System.out.println(exception.getMessage());
         }
 
-        Adresse schulAdresse = new Adresse("Schulstr.", "1A", "1010", "Wien", "Österreich");
+        Adresse schulAdresse = new Adresse("Schulstr.", "1A", "1010", "Wien", Land.OESTERREICH);
         Schule schule = new Schule(schulAdresse, "HTL innere Stadt", chef);
 
         Schule schuleAusFile = Schule.load(Path.of("src/main/resources/schule.json"));
@@ -48,12 +48,12 @@ public class Main {
 
     private static Schueler createSchueler() {
         return new Schueler("Fritzi", "Huber", LocalDate.of(2008, 5, 12),
-                new Adresse("Fritzstr.", "7", "1200", "Wien", "Österreich"), false);
+                new Adresse("Fritzstr.", "7", "1200", "Wien", Land.OESTERREICH), false);
     }
 
     private static Mitarbeiter createMitarbeiter() {
         Adresse adresseKlaus = new Adresse("Klausstr.", "7a", "2700",
-                "Wiener Neustadt", "Österreich");
+                "Wiener Neustadt", Land.OESTERREICH);
         return new Mitarbeiter("Klaus", "Maier",
                 LocalDate.of(1980, 8, 12), adresseKlaus, "4711",
                 2400, false);
@@ -61,7 +61,7 @@ public class Main {
 
     private static Lehrer createLehrer() {
         Adresse adresseLehrer1 = new Adresse("Wissensweg", "1", "1010",
-                "Wien", "Österreich");
+                "Wien", Land.OESTERREICH);
         Lehrer lehrer1= new Lehrer("Willi", "Willswissen",
                 LocalDate.of(1960, 1,1), adresseLehrer1, "L0001",
                 4000, false);
