@@ -52,10 +52,6 @@ public class Schule {
         }
     }
 
-    public static Schule load() {
-        return load(Path.of("schule.json"));
-    }
-
     public static Schule load(Path path) {
         try {
             ObjectMapper mapper = new ObjectMapper();
