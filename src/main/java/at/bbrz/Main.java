@@ -30,6 +30,9 @@ public class Main {
             System.out.println(exception.getMessage());
         }
 
+        Adresse schulAdresse = new Adresse("Schulstr.", "1A", "1010", "Wien", "Österreich");
+        Schule schule = new Schule(schulAdresse, "HTL innere Stadt", chef);
+
         System.out.println("ENDE");
     }
 
