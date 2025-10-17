@@ -1,5 +1,10 @@
 package at.bbrz.schule;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Adresse {
     private String strasze;
     private String hausNummer;
@@ -7,7 +12,12 @@ public class Adresse {
     private String stadt;
     private String land;
 
-    public Adresse(String strasze, String hausNummer, String plz, String stadt, String land) {
+    @JsonCreator
+    public Adresse(@JsonProperty("strasze") String strasze,
+                   @JsonProperty("hausNummer") String hausNummer,
+                   @JsonProperty("plz") String plz,
+                   @JsonProperty("stadt") String stadt,
+                   @JsonProperty("land") String land) {
         this.strasze = strasze;
         this.hausNummer = hausNummer;
         this.plz = plz;

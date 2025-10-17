@@ -2,6 +2,7 @@ package at.bbrz;
 
 import at.bbrz.schule.*;
 
+import java.nio.file.Path;
 import java.time.LocalDate;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -33,6 +34,7 @@ public class Main {
         Adresse schulAdresse = new Adresse("Schulstr.", "1A", "1010", "Wien", "Österreich");
         Schule schule = new Schule(schulAdresse, "HTL innere Stadt", chef);
 
+        Schule schuleAusFile = Schule.load(Path.of("src/main/resources/schule.json"));
         System.out.println("ENDE");
     }
 
