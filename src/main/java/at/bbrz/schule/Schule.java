@@ -24,4 +24,12 @@ public class Schule {
 
         this.mitarbeiter.add(chef);
     }
+
+    public void addMitarbeiter(Mitarbeiter mitarbeiter) {
+        this.mitarbeiter.add(mitarbeiter);
+    }
+
+    public void addSchueler(Schueler schueler) {
+        this.schueler.add(schueler);
+    }
 }

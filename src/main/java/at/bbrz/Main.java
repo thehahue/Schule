@@ -33,6 +33,10 @@ public class Main {
         Adresse schulAdresse = new Adresse("Schulstr.", "1A", "1010", "Wien", "Österreich");
         Schule schule = new Schule(schulAdresse, "HTL innere Stadt", chef);
 
+        schule.addMitarbeiter(klaus);
+        schule.addMitarbeiter(lehrer1);
+        schule.addSchueler(fritzi);
+
         System.out.println("ENDE");
     }
 
