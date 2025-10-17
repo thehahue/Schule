@@ -60,14 +60,16 @@ public class Schule {
 
             Schule schule = mapper.readValue(new File(path.toString()), Schule.class);
 
-            // abgeleitete Sammlung der Schüler aus allen Lehrern
+            // abgeleitete Sammlung der Schüler aus allen Lehrern (ohne Duplikate)
+            java.util.Set<Schueler> unique = new java.util.LinkedHashSet<>();
             for (Mitarbeiter m : schule.mitarbeiter) {
                 if (m instanceof Lehrer l) {
                     if (l.getSchueler() != null) {
-                        schule.schueler.addAll(l.getSchueler());
+                        unique.addAll(l.getSchueler());
                     }
                 }
             }
+            schule.schueler.addAll(unique);
 
             return schule;
         } catch (IOException e) {

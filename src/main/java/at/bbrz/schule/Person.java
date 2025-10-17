@@ -39,4 +39,19 @@ public abstract class Person {
                 ", adresse=" + adresse +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return java.util.Objects.equals(vorname, person.vorname)
+                && java.util.Objects.equals(nachname, person.nachname)
+                && java.util.Objects.equals(geburtsDatum, person.geburtsDatum);
+    }
+
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(vorname, nachname, geburtsDatum);
+    }
 }
