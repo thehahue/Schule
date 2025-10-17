@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Lehrer extends Mitarbeiter {
-    private List<String> feacher;
+    private List<Fach> feacher;
     private List<Schueler> schueler;
 
     public Lehrer(String vorname, String nachname, LocalDate geburtsDatum, Adresse adresse, String nummer,
@@ -19,11 +19,11 @@ public class Lehrer extends Mitarbeiter {
         this.schueler.add(schueler);
     }
 
-    public void addFach(String fach) {
+    public void addFach(Fach fach) {
         this.feacher.add(fach);
     }
 
-    public List<String> getFeacher() {
+    public List<Fach> getFeacher() {
         return feacher;
     }
 

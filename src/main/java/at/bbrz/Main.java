@@ -34,8 +34,11 @@ public class Main {
     }
 
     private static Chef createChef(Lehrer lehrer1) {
-        return new Chef("Chef", "Supa", LocalDate.of(1950, 1, 13)
+        Chef chef = new Chef("Chef", "Supa", LocalDate.of(1950, 1, 13)
         , lehrer1.getAdresse(), "C0001", 6000);
+        chef.addFach(Fach.DEUTSCH);
+
+        return chef;
     }
 
     private static Schueler createSchueler() {
@@ -57,9 +60,9 @@ public class Main {
         Lehrer lehrer1= new Lehrer("Willi", "Willswissen",
                 LocalDate.of(1960, 1,1), adresseLehrer1, "L0001",
                 4000, false);
-        lehrer1.addFach("Mathe");
-        lehrer1.addFach("Biologie");
-        lehrer1.addFach("Physik");
+        lehrer1.addFach(Fach.MATHE);
+        lehrer1.addFach(Fach.BIOLOGIE);
+        lehrer1.addFach(Fach.PHYSIK);
         return lehrer1;
     }
 }
