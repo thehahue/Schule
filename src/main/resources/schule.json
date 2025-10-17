@@ -1,0 +1,77 @@
+{
+  "bezeichnung": "HTL innere Stadt",
+  "adresse": {
+    "strasze": "Schulstr.",
+    "hausNummer": "1A",
+    "plz": "1010",
+    "stadt": "Wien",
+    "land": "Österreich"
+  },
+  "chef": {
+    "type": "CHEF",
+    "vorname": "Chef",
+    "nachname": "Supa",
+    "geburtsDatum": "1950-01-13",
+    "adresse": {
+      "strasze": "Wissensweg",
+      "hausNummer": "1",
+      "plz": "1010",
+      "stadt": "Wien",
+      "land": "Österreich"
+    },
+    "nummer": "C0001",
+    "gehalt": 6000,
+    "faecher": ["DEUTSCH"]
+  },
+  "mitarbeiter": [
+    {
+      "type": "MITARBEITER",
+      "vorname": "Klaus",
+      "nachname": "Maier",
+      "geburtsDatum": "1980-08-12",
+      "adresse": {
+        "strasze": "Klausstr.",
+        "hausNummer": "7a",
+        "plz": "2700",
+        "stadt": "Wiener Neustadt",
+        "land": "Österreich"
+      },
+      "nummer": "4711",
+      "gehalt": 2400,
+      "betriebsrat": false
+    },
+    {
+      "type": "LEHRER",
+      "vorname": "Willi",
+      "nachname": "Willswissen",
+      "geburtsDatum": "1960-01-01",
+      "adresse": {
+        "strasze": "Wissensweg",
+        "hausNummer": "1",
+        "plz": "1010",
+        "stadt": "Wien",
+        "land": "Österreich"
+      },
+      "nummer": "L0001",
+      "gehalt": 4000,
+      "betriebsrat": false,
+      "faecher": ["MATHE", "BIOLOGIE", "PHYSIK"],
+      "schueler": [
+        {
+          "type": "SCHUELER",
+          "vorname": "Fritzi",
+          "nachname": "Huber",
+          "geburtsDatum": "2008-05-12",
+          "adresse": {
+            "strasze": "Fritzstr.",
+            "hausNummer": "7",
+            "plz": "1200",
+            "stadt": "Wien",
+            "land": "Österreich"
+          },
+          "schuelerVertreter": false
+        }
+      ]
+    }
+  ]
+}
