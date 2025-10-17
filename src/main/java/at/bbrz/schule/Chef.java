@@ -15,8 +15,12 @@ public class Chef extends Lehrer {
     public void addMitarbeiter(Mitarbeiter mitarbeiter) {
         //Zirkelbezug verhindern
         if (mitarbeiter == this) {
-            throw new IllegalArgumentException("Cannot be by employee");
+            throw new IllegalArgumentException("Chef connot be added");
         }
+        if (mitarbeiter == null) {
+            throw new IllegalArgumentException("Employee cannot be null");
+        }
+
         this.mitarbeiter.add(mitarbeiter);
     }
 

@@ -20,9 +20,17 @@ public class Main {
 
         Chef chef = createChef(lehrer1);
 
-        chef.addMitarbeiter(klaus);
-        chef.addMitarbeiter(lehrer1);
-        //chef.addMitarbeiter(chef); -> Wäre ein Zirkelbezug -> Also Exception werfen
+        try {
+            chef.addMitarbeiter(klaus);
+            chef.addMitarbeiter(lehrer1);
+            //chef.addMitarbeiter(null);
+            //chef.addMitarbeiter(chef); //-> Wäre ein Zirkelbezug -> Also Exception werfen
+
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+        }
+
+        System.out.println("ENDE");
     }
 
     private static Chef createChef(Lehrer lehrer1) {
