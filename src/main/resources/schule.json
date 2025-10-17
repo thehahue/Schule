@@ -70,6 +70,128 @@
             "land": "Österreich"
           },
           "schuelerVertreter": false
+        },
+        {
+          "type": "SCHUELER",
+          "vorname": "Anna",
+          "nachname": "Meier",
+          "geburtsDatum": "2007-03-22",
+          "adresse": {
+            "strasze": "Lerngasse",
+            "hausNummer": "3",
+            "plz": "1150",
+            "stadt": "Wien",
+            "land": "Österreich"
+          },
+          "schuelerVertreter": true
+        },
+        {
+          "type": "SCHUELER",
+          "vorname": "Paul",
+          "nachname": "König",
+          "geburtsDatum": "2009-11-05",
+          "adresse": {
+            "strasze": "Schlossweg",
+            "hausNummer": "12",
+            "plz": "1130",
+            "stadt": "Wien",
+            "land": "Österreich"
+          },
+          "schuelerVertreter": false
+        }
+      ]
+    },
+    {
+      "type": "LEHRER",
+      "vorname": "Sabine",
+      "nachname": "Stark",
+      "geburtsDatum": "1985-09-14",
+      "adresse": {
+        "strasze": "Didaktikweg",
+        "hausNummer": "2",
+        "plz": "1020",
+        "stadt": "Wien",
+        "land": "Österreich"
+      },
+      "nummer": "L0002",
+      "gehalt": 3800,
+      "betriebsrat": false,
+      "faecher": ["DEUTSCH", "MATHE"],
+      "schueler": [
+        {
+          "type": "SCHUELER",
+          "vorname": "Fritzi",
+          "nachname": "Huber",
+          "geburtsDatum": "2008-05-12",
+          "adresse": {
+            "strasze": "Fritzstr.",
+            "hausNummer": "7",
+            "plz": "1200",
+            "stadt": "Wien",
+            "land": "Österreich"
+          },
+          "schuelerVertreter": false
+        },
+        {
+          "type": "SCHUELER",
+          "vorname": "Lena",
+          "nachname": "Bauer",
+          "geburtsDatum": "2007-07-30",
+          "adresse": {
+            "strasze": "Blumengasse",
+            "hausNummer": "8",
+            "plz": "1090",
+            "stadt": "Wien",
+            "land": "Österreich"
+          },
+          "schuelerVertreter": false
+        }
+      ]
+    },
+    {
+      "type": "LEHRER",
+      "vorname": "Markus",
+      "nachname": "Klein",
+      "geburtsDatum": "1978-02-03",
+      "adresse": {
+        "strasze": "Campusallee",
+        "hausNummer": "5",
+        "plz": "1220",
+        "stadt": "Wien",
+        "land": "Österreich"
+      },
+      "nummer": "L0003",
+      "gehalt": 4100,
+      "betriebsrat": false,
+      "faecher": ["PHYSIK", "MATHE"],
+      "schueler": [
+        {
+          "type": "SCHUELER",
+          "vorname": "Miriam",
+          "nachname": "Schmidt",
+          "geburtsDatum": "2009-01-19",
+          "adresse": {
+            "strasze": "Heliosweg",
+            "hausNummer": "4",
+            "plz": "1040",
+            "stadt": "Wien",
+            "land": "Österreich"
+          },
+          "schuelerVertreter": true
+        },
+        {
+          "type": "SCHUELER",
+          "vorname": "Jonas",
+          "nachname": "Hofmann",
+          "geburtsDatum": "2008-12-11",
+          "adresse": {
+            "strasze": "Laborweg",
+            "hausNummer": "9",
+            "plz": "1210",
+            "stadt": "Wien",
+            "land": "Österreich"
+          },
+          "schuelerVertreter": false
         }
       ]
     }
