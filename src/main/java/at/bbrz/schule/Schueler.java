@@ -21,6 +21,10 @@ public class Schueler extends Person {
         this.schuelerVertreter = schuelerVertreter;
     }
 
+    public boolean isSchuelerVertreter() {
+        return schuelerVertreter;
+    }
+
     @Override
     public String toString() {
         return "Schueler{" +
