@@ -1,13 +1,25 @@
 package at.bbrz.schule;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonTypeName("CHEF")
 public class Chef extends Lehrer {
     private List<Mitarbeiter> mitarbeiter;
 
-    public Chef(String vorname, String nachname, LocalDate geburtsDatum, Adresse adresse, String nummer, double gehalt) {
+    @JsonCreator
+    public Chef(@JsonProperty("vorname") String vorname,
+                @JsonProperty("nachname") String nachname,
+                @JsonProperty("geburtsDatum") LocalDate geburtsDatum,
+                @JsonProperty("adresse") Adresse adresse,
+                @JsonProperty("nummer") String nummer,
+                @JsonProperty("gehalt") double gehalt) {
         super(vorname, nachname, geburtsDatum, adresse, nummer, gehalt, false);
         this.mitarbeiter = new ArrayList<>();
     }
@@ -22,10 +34,6 @@ public class Chef extends Lehrer {
         }
 
         this.mitarbeiter.add(mitarbeiter);
-    }
-
-    public List<Mitarbeiter> getMitarbeiter() {
-        return mitarbeiter;
     }
 
     @Override
