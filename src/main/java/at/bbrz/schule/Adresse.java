@@ -25,6 +25,31 @@ public class Adresse {
         this.land = land;
     }
 
+    @JsonProperty("strasze")
+    public String getStrasze() {
+        return strasze;
+    }
+
+    @JsonProperty("hausNummer")
+    public String getHausNummer() {
+        return hausNummer;
+    }
+
+    @JsonProperty("plz")
+    public String getPlz() {
+        return plz;
+    }
+
+    @JsonProperty("stadt")
+    public String getStadt() {
+        return stadt;
+    }
+
+    @JsonProperty("land")
+    public Land getLand() {
+        return land;
+    }
+
     @Override
     public String toString() {
         return "Adresse{" +

@@ -1,6 +1,7 @@
 package at.bbrz.schule;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.time.LocalDate;
@@ -26,8 +27,24 @@ public abstract class Person {
         this.adresse = adresse;
     }
 
+    @JsonProperty("adresse")
     public Adresse getAdresse() {
         return adresse;
+    }
+
+    @JsonProperty("vorname")
+    public String getVorname() {
+        return vorname;
+    }
+
+    @JsonProperty("nachname")
+    public String getNachname() {
+        return nachname;
+    }
+
+    @JsonProperty("geburtsDatum")
+    public LocalDate getGeburtsDatum() {
+        return geburtsDatum;
     }
 
     @Override
