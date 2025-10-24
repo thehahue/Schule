@@ -3,71 +3,12 @@ package at.bbrz;
 import at.bbrz.schule.*;
 
 import java.nio.file.Path;
-import java.time.LocalDate;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        Mitarbeiter klaus = createMitarbeiter();
-        System.out.println(klaus);
-
-        Lehrer lehrer1 = createLehrer(); // mit STRG+ALT+m -> extract method aufgerufen
-        Schueler fritzi = createSchueler();
-
-        lehrer1.addSchueler(fritzi);
-
-        System.out.println(lehrer1);
-
-        Chef chef = createChef(lehrer1);
-
-        try {
-            chef.addMitarbeiter(klaus);
-            chef.addMitarbeiter(lehrer1);
-            //chef.addMitarbeiter(null);
-            //chef.addMitarbeiter(chef); //-> Wäre ein Zirkelbezug -> Also Exception werfen
-
-        } catch (IllegalArgumentException exception) {
-            System.out.println(exception.getMessage());
-        }
-
-        Adresse schulAdresse = new Adresse("Schulstr.", "1A", "1010", "Wien", Land.OESTERREICH);
-        Schule schule = new Schule(schulAdresse, "HTL innere Stadt", chef);
-
-        Schule schuleAusFile = Schule.load(Path.of("src/main/resources/schule.json"));
+        Schule.load(Path.of("src/main/resources/schule.json"));
         System.out.println("ENDE");
-    }
-
-    private static Chef createChef(Lehrer lehrer1) {
-        Chef chef = new Chef("Chef", "Supa", LocalDate.of(1950, 1, 13)
-        , lehrer1.getAdresse(), "C0001", 6000);
-        chef.addFach(Fach.DEUTSCH);
-
-        return chef;
-    }
-
-    private static Schueler createSchueler() {
-        return new Schueler("Fritzi", "Huber", LocalDate.of(2008, 5, 12),
-                new Adresse("Fritzstr.", "7", "1200", "Wien", Land.OESTERREICH), false);
-    }
-
-    private static Mitarbeiter createMitarbeiter() {
-        Adresse adresseKlaus = new Adresse("Klausstr.", "7a", "2700",
-                "Wiener Neustadt", Land.OESTERREICH);
-        return new Mitarbeiter("Klaus", "Maier",
-                LocalDate.of(1980, 8, 12), adresseKlaus, "4711",
-                2400, false);
-    }
-
-    private static Lehrer createLehrer() {
-        Adresse adresseLehrer1 = new Adresse("Wissensweg", "1", "1010",
-                "Wien", Land.OESTERREICH);
-        Lehrer lehrer1= new Lehrer("Willi", "Willswissen",
-                LocalDate.of(1960, 1,1), adresseLehrer1, "L0001",
-                4000, false);
-        lehrer1.addFach(Fach.MATHE);
-        lehrer1.addFach(Fach.BIOLOGIE);
-        lehrer1.addFach(Fach.PHYSIK);
-        return lehrer1;
     }
 }
