@@ -63,7 +63,7 @@ public enum Land {
         // Generische Normalisierung (Umlaute → ae/oe/ue/ss)
         String n = normalize(value);
         for (Land l : values()) {
-            if (normalize(l.displayName).equals(n)) {
+            if (normalize(l.displayName).equalsIgnoreCase(n)) {
                 return l;
             }
         }
@@ -76,6 +76,6 @@ public enum Land {
                 .replace("ä", "ae")
                 .replace("ö", "oe")
                 .replace("ü", "ue")
-                .replace("ß", "ss");
+                .replace("ß", "sz");
     }
 }
