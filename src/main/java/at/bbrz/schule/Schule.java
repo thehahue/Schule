@@ -77,11 +77,8 @@ public class Schule {
         }
     }
 
-    public void addMitarbeiter(Mitarbeiter mitarbeiter) {
-        this.mitarbeiter.add(mitarbeiter);
-    }
-
-    public void addSchueler(Schueler schueler) {
-        this.schueler.add(schueler);
+    public List<Schueler> getSchuelerVertreter() {
+        return schueler.stream().filter(s -> s.isSchuelerVertreter())
+                .toList();
     }
 }
