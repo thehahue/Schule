@@ -40,15 +40,6 @@ public class Lehrer extends Mitarbeiter {
         return schueler;
     }
 
-    @JsonProperty("faecher")
-    public void setFeacher(List<Fach> faecher) {
-        this.feacher = (faecher != null) ? new ArrayList<>(faecher) : new ArrayList<>();
-    }
-
-    public void setSchueler(List<Schueler> schueler) {
-        this.schueler = (schueler != null) ? new ArrayList<>(schueler) : new ArrayList<>();
-    }
-
     @Override
     public String toString() {
         return "Lehrer{" +
