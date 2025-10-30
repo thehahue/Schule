@@ -18,10 +18,16 @@ public class Main {
 
         System.out.println("Schülervertreter:\n---------------------");
 
-        List<Schueler> schuelerVertreter = schule.getSchuelerVertreter();
+        List<Schueler> schuelerVertreter = schule.findSchuelerVertreter();
         for (Schueler schueler : schuelerVertreter) {
             System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(schueler));
         }
+
+        schule.save(Path.of("src/main/resources/schule2.json"));
+
+        Schule schule2 = Schule.load(Path.of("src/main/resources/schule2.json"));
+
+        System.out.println("Schule und Schule2 gleich? "+schule.equals(schule2));
 
         System.out.println("ENDE");
     }
