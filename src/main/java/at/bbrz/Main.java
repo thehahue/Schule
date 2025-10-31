@@ -16,11 +16,32 @@ public class Main {
         mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
         Schule schule = Schule.load(Path.of("src/main/resources/schule.json"));
 
+        //Falsche Stelle -> die Schule ist zuständig für die Schüler
+//        List<Schueler> schueler1 = schule.getSchueler();
+//        for (Schueler schueler2 : schueler1) {
+//            if (schueler2.isSchuelerVertreter()) {
+//                System.out.println(schueler2);
+//            }
+//        }
+
         System.out.println("Schülervertreter:\n---------------------");
 
         List<Schueler> schuelerVertreter = schule.findSchuelerVertreter();
         for (Schueler schueler : schuelerVertreter) {
             System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(schueler));
+        }
+
+        List<Fach> availableSubjects = schule.findAvailableSubjects();
+        List<Fach> availableSubjectsFor = schule.findAvailableSubjectsFor();
+
+        System.out.println("Available subjects:");
+        for (Fach subject : availableSubjects) {
+            System.out.println(subject);
+        }
+
+        System.out.println("Available subjects FOR:");
+        for (Fach subject : availableSubjectsFor) {
+            System.out.println(subject);
         }
 
         schule.save(Path.of("src/main/resources/schule2.json"));
