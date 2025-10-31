@@ -47,4 +47,8 @@ public class Lehrer extends Mitarbeiter {
                 ", schueler=" + schueler +
                 "} " + super.toString();
     }
+
+    public List<Fach> getFeacher() {
+        return feacher;
+    }
 }

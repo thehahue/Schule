@@ -13,9 +13,11 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.nio.file.Path;
 import java.nio.file.Files;
+import java.util.Set;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Schule {
@@ -104,5 +106,49 @@ public class Schule {
     public List<Schueler> findSchuelerVertreter() {
         return schueler.stream().filter(s -> s.isSchuelerVertreter())
                 .toList();
+    }
+
+    public List<Fach> findAvailableSubjects() {
+        List<Lehrer> lehrer = this.mitarbeiter.stream()
+                .filter(ma -> ma instanceof Lehrer)
+                .map(ma -> (Lehrer) ma)
+                .toList();
+
+        Set<Fach> found = new LinkedHashSet<>();
+
+        for(Lehrer l : lehrer) {
+            found.addAll(l.getFeacher());
+        }
+
+        return found.stream().toList();
+
+        /*
+            return mitarbeiter.stream()
+            .filter(Lehrer.class::isInstance)
+            .map(Lehrer.class::cast)
+            .flatMap(l -> l.getFeacher().stream())
+            .distinct()
+            .toList();
+         */
+    }
+
+    // wie findAvailableSubjects, aber ohne Streams – nur mit Schleifen
+    public List<Fach> findAvailableSubjectsFor() {
+        List<Lehrer> lehrerList = new ArrayList<>();
+        for (Mitarbeiter m : this.mitarbeiter) {
+            if (m instanceof Lehrer) {
+                lehrerList.add((Lehrer) m);
+            }
+        }
+
+        Set<Fach> unique = new LinkedHashSet<>();
+        for (Lehrer l : lehrerList) {
+            List<Fach> faecher = l.getFeacher();
+            if (faecher != null) {
+                unique.addAll(faecher);
+            }
+        }
+
+        return new ArrayList<>(unique);
     }
 }
