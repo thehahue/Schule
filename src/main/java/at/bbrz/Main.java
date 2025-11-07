@@ -45,14 +45,16 @@ public class Main {
             System.out.println(subject);
         }
 
+        schule.deleteSchueler("Fritzi", "Huber", LocalDate.of(2008,5,12));
+        //schule.deleteSchuelerNew("Fritzi", "Huber", LocalDate.of(2008,5,12));
+
         schule.save(Path.of("src/main/resources/schule2.json"));
 
         Schule schule2 = Schule.load(Path.of("src/main/resources/schule2.json"));
 
         System.out.println("Schule und Schule2 gleich? "+schule.equals(schule2));
 
-        schule.deleteSchueler("Fritzi", "Huber", LocalDate.of(2008,5,12));
-        //schule.deleteSchuelerNew("Fritzi", "Huber", LocalDate.of(2008,5,12));
+
 
         System.out.println("ENDE");
 
