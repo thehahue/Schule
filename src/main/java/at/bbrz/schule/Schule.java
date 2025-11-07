@@ -12,12 +12,10 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.*;
 import java.nio.file.Path;
 import java.nio.file.Files;
-import java.util.Set;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Schule {
@@ -34,7 +32,7 @@ public class Schule {
         this.schueler = new ArrayList<>();
     }
 
-    public Schule(Adresse adresse,  String bezeichnung, Chef chef) {
+    public Schule(Adresse adresse, String bezeichnung, Chef chef) {
         this(adresse, bezeichnung);
         if (chef != null) {
             this.mitarbeiter.add(chef);
@@ -116,7 +114,7 @@ public class Schule {
 
         Set<Fach> found = new LinkedHashSet<>();
 
-        for(Lehrer l : lehrer) {
+        for (Lehrer l : lehrer) {
             found.addAll(l.getFeacher());
         }
 
@@ -150,5 +148,60 @@ public class Schule {
         }
 
         return new ArrayList<>(unique);
+    }
+
+    public void deleteSchueler(String vorname, String nachname, LocalDate geburtsDatum) {
+        Schueler vergl = new Schueler(vorname, nachname, geburtsDatum, null, false);
+        // Funktioniert nicht, weil eine Liste nicht während der Schleife verändert werden darf -> ConcurrentModificationException
+        /*        for (Schueler s : schueler) {
+            if (vergl.equals(s)) {
+                schueler.remove(s);
+            }
+        }*/
+
+        // Abhilfe mit einem Iterator
+        Iterator<Schueler> iter = schueler.iterator();
+        while (iter.hasNext()) {
+            Schueler schueler = iter.next();
+
+            if (vergl.equals(schueler)) {
+                iter.remove();
+            }
+        }
+
+        Iterator<Mitarbeiter> iterMitarbeiter = mitarbeiter.iterator();
+        while (iterMitarbeiter.hasNext()) {
+            Mitarbeiter mitarbeiter = iterMitarbeiter.next();
+            if (mitarbeiter instanceof Lehrer) {
+                Lehrer lehrer = (Lehrer) mitarbeiter;
+
+                iter = lehrer.getSchueler().iterator();
+                while (iter.hasNext()) {
+                    Schueler schueler = iter.next();
+                    if (vergl.equals(schueler)) {
+                        iter.remove();
+                    }
+                }
+            }
+        }
+    }
+
+    // Moderne Variante mit removeIf und Streams
+    public void deleteSchuelerNew(String vorname, String nachname, LocalDate geburtsDatum) {
+        Schueler target = new Schueler(vorname, nachname, geburtsDatum, null, false);
+
+        schueler.removeIf(target::equals);
+        //schueler.removeIf(schueler -> target.equals(schueler));
+
+        // Entferne aus allen Lehrer-Schüler-Listen
+        mitarbeiter.stream()
+                .filter(Lehrer.class::isInstance)
+                .map(Lehrer.class::cast)
+                .forEach(lehrer -> {
+                    List<Schueler> liste = lehrer.getSchueler();
+                    if (liste != null) {
+                        liste.removeIf(target::equals);
+                    }
+                });
     }
 }

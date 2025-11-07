@@ -7,6 +7,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.List;
 
 public class Main {
@@ -50,6 +51,11 @@ public class Main {
 
         System.out.println("Schule und Schule2 gleich? "+schule.equals(schule2));
 
+        schule.deleteSchueler("Fritzi", "Huber", LocalDate.of(2008,5,12));
+        //schule.deleteSchuelerNew("Fritzi", "Huber", LocalDate.of(2008,5,12));
+
         System.out.println("ENDE");
+
+
     }
 }
