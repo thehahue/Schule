@@ -45,6 +45,14 @@ public class Schule {
         return Collections.unmodifiableList(schueler);
     }
 
+    public Adresse getAdresse() {
+        return adresse;
+    }
+
+    public String getBezeichnung() {
+        return bezeichnung;
+    }
+
     @JsonCreator
     public Schule(@JsonProperty("adresse") Adresse adresse,
                   @JsonProperty("bezeichnung") String bezeichnung,
@@ -70,6 +78,10 @@ public class Schule {
 
     public void addZeugnisse(List<Zeugnis> zeugnisse) {
         this.zeugnisse.addAll(zeugnisse);
+    }
+
+    public List<Zeugnis> getZeugnisse() {
+        return Collections.unmodifiableList(zeugnisse);
     }
 
     public static Schule load(Path path) {

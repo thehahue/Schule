@@ -51,21 +51,21 @@ public class Zeugnis {
         eintraege.removeIf(e -> e.getFach() == fach);
     }
 
-//    public Optional<ZeugnisEintrag> findeEintrag(Fach fach) {
-//        return eintraege.stream()
-//                .filter(e -> e.getFach() == fach)
-//                .findFirst();
-//    }
-//
-//    public double berechneNotenschnitt() {
-//        if (eintraege.isEmpty()) {
-//            return 0.0;
-//        }
-//        int summe = eintraege.stream()
-//                .mapToInt(e -> e.getNote().getWert())
-//                .sum();
-//        return (double) summe / eintraege.size();
-//    }
+    public Optional<ZeugnisEintrag> findeEintrag(Fach fach) {
+        return eintraege.stream()
+                .filter(e -> e.getFach() == fach)
+                .findFirst();
+    }
+
+    public double berechneNotenschnitt() {
+        if (eintraege.isEmpty()) {
+            return 0.0;
+        }
+        int summe = eintraege.stream()
+                .mapToInt(e -> e.getNote().getWert())
+                .sum();
+        return (double) summe / eintraege.size();
+    }
 
     @Override
     public String toString() {
