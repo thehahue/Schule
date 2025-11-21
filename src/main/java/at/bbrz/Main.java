@@ -54,6 +54,14 @@ public class Main {
 
         System.out.println("Schule und Schule2 gleich? "+schule.equals(schule2));
 
+        Zeugnis erstesZeugnis = new Zeugnis(schule.findSchuelerVertreter().getFirst(),
+                "2025/2026", LocalDate.of(2025, 11, 20));
+        erstesZeugnis.addEintrag(Fach.DEUTSCH, Note.SEHR_GUT, "War besonders fleißig");
+        erstesZeugnis.addEintrag(Fach.MATHE, Note.GUT, null);
+
+        System.out.println(erstesZeugnis);
+
+        schule.addZeugnis(erstesZeugnis);
 
 
         System.out.println("ENDE");

@@ -24,12 +24,14 @@ public class Schule {
     private List<Mitarbeiter> mitarbeiter;
     @JsonIgnore
     private List<Schueler> schueler;
+    private List<Zeugnis> zeugnisse;
 
     public Schule(Adresse adresse, String bezeichnung) {
         this.adresse = adresse;
         this.bezeichnung = bezeichnung;
         this.mitarbeiter = new ArrayList<>();
         this.schueler = new ArrayList<>();
+        this.zeugnisse = new ArrayList<>();
     }
 
     public Schule(Adresse adresse, String bezeichnung, Chef chef) {
@@ -55,6 +57,10 @@ public class Schule {
         if (mitarbeiter != null) {
             this.mitarbeiter.addAll(mitarbeiter);
         }
+    }
+
+    public void addZeugnis(Zeugnis zeugnis) {
+        this.zeugnisse.add(zeugnis);
     }
 
     public static Schule load(Path path) {
