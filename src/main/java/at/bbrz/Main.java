@@ -63,6 +63,15 @@ public class Main {
 
         schule.addZeugnis(erstesZeugnis);
 
+//        List<Schueler> schuelerListe = schule.getSchueler();
+//
+//        for (Schueler schueler : schuelerListe) {
+//
+//        }
+
+        List<Zeugnis> exampleZeugnisse = ZeugnisFactory.createExampleZeugnisse(schule, "2025/2026");
+        schule.addZeugnisse(exampleZeugnisse);
+
 
         System.out.println("ENDE");
 
