@@ -41,6 +41,10 @@ public class Schule {
         }
     }
 
+    public List<Schueler> getSchueler() {
+        return Collections.unmodifiableList(schueler);
+    }
+
     @JsonCreator
     public Schule(@JsonProperty("adresse") Adresse adresse,
                   @JsonProperty("bezeichnung") String bezeichnung,
@@ -50,6 +54,7 @@ public class Schule {
         this.bezeichnung = bezeichnung;
         this.mitarbeiter = new ArrayList<>();
         this.schueler = new ArrayList<>();
+        this.zeugnisse = new ArrayList<>();
 
         if (chef != null) {
             this.mitarbeiter.add(chef);
@@ -61,6 +66,10 @@ public class Schule {
 
     public void addZeugnis(Zeugnis zeugnis) {
         this.zeugnisse.add(zeugnis);
+    }
+
+    public void addZeugnisse(List<Zeugnis> zeugnisse) {
+        this.zeugnisse.addAll(zeugnisse);
     }
 
     public static Schule load(Path path) {
