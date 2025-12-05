@@ -77,4 +77,10 @@ class DoubleCalculatorTest {
         assertEquals((20d/3), doubleCalculator.divide());
     }
 
+    @Test
+    void calculateSumOfTwoSmallNumbers_shouldReturnResultWithRoundingIssue() {
+        doubleCalculator = new DoubleCalculator(0.1,0.2);
+        assertEquals(0.30000000000000004, doubleCalculator.sum());
+    }
+
 }
