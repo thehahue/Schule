@@ -1,8 +1,8 @@
 package at.bbrz;
 
 public class Calculator {
-    private int valueA;
-    private int valueB;
+    private final int valueA;
+    private final int valueB;
 
     public Calculator(int valueA, int valueB) {
         this.valueA = valueA;
@@ -22,6 +22,9 @@ public class Calculator {
     }
 
     public int divide() {
+        if (valueB == 0) {
+            throw new ArithmeticException("Division by zero");
+        }
         return valueA / valueB;
     }
 }

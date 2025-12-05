@@ -51,4 +51,29 @@ class CalculatorTest {
         calculator = new Calculator(Integer.MAX_VALUE,1);
         assertEquals(Integer.MIN_VALUE, calculator.sum());
     }
+
+    @Test
+    void divisionByZero_shouldThrowException() {
+        calculator = new Calculator(1,0);
+        ArithmeticException arithmeticException = assertThrows(ArithmeticException.class, calculator::divide);
+        assertEquals("Division by zero", arithmeticException.getMessage());
+    }
+
+    @Test
+    void calculateDivisionOfTwoNumbers_shouldReturnCorrectResult() {
+        calculator = new Calculator(10,2);
+        assertEquals(5, calculator.divide());
+    }
+
+    @Test
+    void calculateDivisionOfTwoNumbers_shouldReturnResultWithoutDicimalPlaces() {
+        calculator = new Calculator(10,3);
+        assertEquals(3, calculator.divide());
+    }
+
+    @Test
+    void calculateDivisionOfTwoNumbers_shouldReturnResultWithoutRounding() {
+        calculator = new Calculator(20,3); //6.6666666666
+        assertEquals(6, calculator.divide());
+    }
 }
