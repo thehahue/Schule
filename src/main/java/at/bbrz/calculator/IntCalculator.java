@@ -1,10 +1,10 @@
-package at.bbrz;
+package at.bbrz.calculator;
 
-public class Calculator {
+public class IntCalculator {
     private final int valueA;
     private final int valueB;
 
-    public Calculator(int valueA, int valueB) {
+    public IntCalculator(int valueA, int valueB) {
         this.valueA = valueA;
         this.valueB = valueB;
     }

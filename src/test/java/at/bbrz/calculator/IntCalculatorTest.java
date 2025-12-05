@@ -1,79 +1,79 @@
-package at.bbrz;
+package at.bbrz.calculator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CalculatorTest {
-    Calculator calculator;
+class IntCalculatorTest {
+    IntCalculator intCalculator;
 
     @BeforeEach
     void setUp() {
-        calculator = new Calculator(5,7);
+        intCalculator = new IntCalculator(5,7);
     }
 
     @Test
     void calculateSumOfTwoNumbers_shouldReturnCorrectResult() {
-        assertEquals(12, calculator.sum());
+        assertEquals(12, intCalculator.sum());
     }
 
     @Test
     void calculateSubstractOfTwoNumbers_shouldReturnCorrectResult() {
-        assertEquals(-2, calculator.substract());
+        assertEquals(-2, intCalculator.substract());
     }
 
     @Test
     void calculateMultiplyOfTwoNumbers_shouldReturnCorrectResult() {
-        assertEquals(35, calculator.multiply());
+        assertEquals(35, intCalculator.multiply());
     }
 
     @Test
     void calculateSumOfTwoNegativeNumbers_shouldReturnCorrectResult() {
-        calculator = new Calculator(-5,-7);
-        assertEquals(-12, calculator.sum());
+        intCalculator = new IntCalculator(-5,-7);
+        assertEquals(-12, intCalculator.sum());
     }
 
     @Test
     void calculateSubstractOfTwoNegativeNumbers_shouldReturnCorrectResult() {
-        calculator = new Calculator(-5,-7);
-        assertEquals(2, calculator.substract());
+        intCalculator = new IntCalculator(-5,-7);
+        assertEquals(2, intCalculator.substract());
     }
 
     @Test
     void calculateMultiplyOfTwoNegativeNumbers_shouldReturnCorrectResult() {
-        calculator = new Calculator(-5,-7);
-        assertEquals(35, calculator.multiply());
+        intCalculator = new IntCalculator(-5,-7);
+        assertEquals(35, intCalculator.multiply());
     }
 
     @Test
     void calculateWithMaxValues_shouldReturnCorrectResult() {
-        calculator = new Calculator(Integer.MAX_VALUE,1);
-        assertEquals(Integer.MIN_VALUE, calculator.sum());
+        intCalculator = new IntCalculator(Integer.MAX_VALUE,1);
+        assertEquals(Integer.MIN_VALUE, intCalculator.sum());
     }
 
     @Test
     void divisionByZero_shouldThrowException() {
-        calculator = new Calculator(1,0);
-        ArithmeticException arithmeticException = assertThrows(ArithmeticException.class, calculator::divide);
+        intCalculator = new IntCalculator(1,0);
+        ArithmeticException arithmeticException = assertThrows(ArithmeticException.class, intCalculator::divide);
         assertEquals("Division by zero", arithmeticException.getMessage());
     }
 
     @Test
     void calculateDivisionOfTwoNumbers_shouldReturnCorrectResult() {
-        calculator = new Calculator(10,2);
-        assertEquals(5, calculator.divide());
+        intCalculator = new IntCalculator(10,2);
+        assertEquals(5, intCalculator.divide());
     }
 
     @Test
     void calculateDivisionOfTwoNumbers_shouldReturnResultWithoutDicimalPlaces() {
-        calculator = new Calculator(10,3);
-        assertEquals(3, calculator.divide());
+        intCalculator = new IntCalculator(10,3);
+        assertEquals(3, intCalculator.divide());
     }
 
     @Test
     void calculateDivisionOfTwoNumbers_shouldReturnResultWithoutRounding() {
-        calculator = new Calculator(20,3); //6.6666666666
-        assertEquals(6, calculator.divide());
+        intCalculator = new IntCalculator(20,3); //6.6666666666
+        assertEquals(6, intCalculator.divide());
     }
 }
