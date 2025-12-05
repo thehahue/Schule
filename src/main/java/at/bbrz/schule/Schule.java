@@ -24,6 +24,7 @@ public class Schule {
     private List<Mitarbeiter> mitarbeiter;
     @JsonIgnore
     private List<Schueler> schueler;
+    private List<Klassenzimmer> klassen;
     private List<Zeugnis> zeugnisse;
 
     public Schule(Adresse adresse, String bezeichnung) {
@@ -31,6 +32,7 @@ public class Schule {
         this.bezeichnung = bezeichnung;
         this.mitarbeiter = new ArrayList<>();
         this.schueler = new ArrayList<>();
+        this.klassen = new ArrayList<>();
         this.zeugnisse = new ArrayList<>();
     }
 
@@ -45,6 +47,14 @@ public class Schule {
         return Collections.unmodifiableList(schueler);
     }
 
+    public List<Klassenzimmer> getKlassen() {
+        return Collections.unmodifiableList(klassen);
+    }
+
+    public List<Mitarbeiter> getMitarbeiter() {
+        return Collections.unmodifiableList(mitarbeiter);
+    }
+
     public Adresse getAdresse() {
         return adresse;
     }
@@ -57,11 +67,13 @@ public class Schule {
     public Schule(@JsonProperty("adresse") Adresse adresse,
                   @JsonProperty("bezeichnung") String bezeichnung,
                   @JsonProperty("chef") Chef chef,
-                  @JsonProperty("mitarbeiter") List<Mitarbeiter> mitarbeiter) {
+                  @JsonProperty("mitarbeiter") List<Mitarbeiter> mitarbeiter,
+                  @JsonProperty("klassen") List<Klassenzimmer> klassen) {
         this.adresse = adresse;
         this.bezeichnung = bezeichnung;
         this.mitarbeiter = new ArrayList<>();
         this.schueler = new ArrayList<>();
+        this.klassen = new ArrayList<>();
         this.zeugnisse = new ArrayList<>();
 
         if (chef != null) {
@@ -70,18 +82,72 @@ public class Schule {
         if (mitarbeiter != null) {
             this.mitarbeiter.addAll(mitarbeiter);
         }
+        if (klassen != null) {
+            this.klassen.addAll(klassen);
+        }
     }
 
     public void addZeugnis(Zeugnis zeugnis) {
+        Objects.requireNonNull(zeugnis, "Zeugnis darf nicht null sein");
         this.zeugnisse.add(zeugnis);
     }
 
     public void addZeugnisse(List<Zeugnis> zeugnisse) {
+        if (zeugnisse == null) {
+            return;
+        }
         this.zeugnisse.addAll(zeugnisse);
     }
 
     public List<Zeugnis> getZeugnisse() {
         return Collections.unmodifiableList(zeugnisse);
+    }
+
+    public void addSchueler(Schueler schueler) {
+        Objects.requireNonNull(schueler, "Schüler darf nicht null sein");
+        this.schueler.add(schueler);
+    }
+
+    public void addKlassenzimmer(Klassenzimmer klassenzimmer) {
+        Objects.requireNonNull(klassenzimmer, "Klassenzimmer darf nicht null sein");
+        this.klassen.add(klassenzimmer);
+
+        for (Schueler klassenSchueler : klassenzimmer.getSchueler()) {
+            if (!this.schueler.contains(klassenSchueler)) {
+                this.schueler.add(klassenSchueler);
+            }
+        }
+    }
+
+    public void replaceSchueler(Schueler original, Schueler updated) {
+        Objects.requireNonNull(original, "Original darf nicht null sein");
+        Objects.requireNonNull(updated, "Updated darf nicht null sein");
+        int index = this.schueler.indexOf(original);
+        if (index >= 0) {
+            this.schueler.set(index, updated);
+        }
+        for (Klassenzimmer klassenzimmer : klassen) {
+            klassenzimmer.replaceSchueler(original, updated);
+        }
+    }
+
+    public void replaceZeugnis(Zeugnis original, Zeugnis updated) {
+        Objects.requireNonNull(original, "Originalzeugnis darf nicht null sein");
+        Objects.requireNonNull(updated, "Neues Zeugnis darf nicht null sein");
+        this.zeugnisse.remove(original);
+        this.zeugnisse.add(updated);
+    }
+
+    public void removeZeugnis(Zeugnis target) {
+        Objects.requireNonNull(target, "Zeugnis darf nicht null sein");
+        this.zeugnisse.remove(target);
+    }
+
+    public List<Zeugnis> findZeugnisseFuer(Schueler schueler) {
+        Objects.requireNonNull(schueler, "Schüler darf nicht null sein");
+        return this.zeugnisse.stream()
+                .filter(z -> schueler.equals(z.getSchueler()))
+                .toList();
     }
 
     public static Schule load(Path path) {
@@ -91,6 +157,9 @@ public class Schule {
             mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
             Schule schule = mapper.readValue(new File(path.toString()), Schule.class);
+            if (schule.klassen == null) {
+                schule.klassen = new ArrayList<>();
+            }
 
             // abgeleitete Sammlung der Schüler aus allen Lehrern (ohne Duplikate)
             java.util.Set<Schueler> unique = new java.util.LinkedHashSet<>();
@@ -101,6 +170,12 @@ public class Schule {
                     }
                 }
             }
+            for (Klassenzimmer klassenzimmer : schule.klassen) {
+                if (klassenzimmer.getSchueler() != null) {
+                    unique.addAll(klassenzimmer.getSchueler());
+                }
+            }
+            schule.schueler.clear();
             schule.schueler.addAll(unique);
 
             return schule;
@@ -211,6 +286,9 @@ public class Schule {
                 }
             }
         }
+        for (Klassenzimmer klassenzimmer : klassen) {
+            klassenzimmer.removeSchueler(vergl);
+        }
     }
 
     // Moderne Variante mit removeIf und Streams
@@ -230,5 +308,6 @@ public class Schule {
                         liste.removeIf(target::equals);
                     }
                 });
+        klassen.forEach(klassenzimmer -> klassenzimmer.removeSchueler(target));
     }
 }

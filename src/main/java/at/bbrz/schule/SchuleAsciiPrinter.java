@@ -21,7 +21,9 @@ public final class SchuleAsciiPrinter {
         Objects.requireNonNull(schule, "Schule darf nicht null sein");
 
         StringBuilder sb = new StringBuilder();
-        sb.append("Schule: ").append(schule.getBezeichnung()).append(System.lineSeparator());
+        sb.append("Schule: ")
+                .append(schule.getBezeichnung())
+                .append(System.lineSeparator());
 
         Adresse adresse = schule.getAdresse();
         if (adresse != null) {
@@ -34,9 +36,32 @@ public final class SchuleAsciiPrinter {
             sb.append(System.lineSeparator());
         }
 
+        sb.append(buildKlassenSection(schule.getKlassen()));
         sb.append(buildStudentsTable(schule.getSchueler()));
         sb.append(buildZeugnisseSection(schule.getZeugnisse()));
 
+        return sb.toString();
+    }
+
+    private static String buildKlassenSection(List<Klassenzimmer> klassen) {
+        String[] headers = {"Bezeichnung", "Klassenvorstand", "Schüler"};
+        List<String[]> rows = new ArrayList<>();
+
+        for (Klassenzimmer klassenzimmer : klassen) {
+            rows.add(new String[]{
+                    klassenzimmer.getBezeichnung(),
+                    formatLehrerName(klassenzimmer.getKlassenvorstand()),
+                    Integer.toString(klassenzimmer.getSchueler().size())
+            });
+        }
+
+        if (rows.isEmpty()) {
+            rows.add(new String[]{"-", "-", "-"});
+        }
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(System.lineSeparator()).append("Klassenzimmer:").append(System.lineSeparator());
+        sb.append(buildTable(headers, rows));
         return sb.toString();
     }
 
@@ -185,6 +210,13 @@ public final class SchuleAsciiPrinter {
             return "-";
         }
         return String.format(java.util.Locale.GERMAN, "%.2f", value);
+    }
+
+    private static String formatLehrerName(Lehrer lehrer) {
+        if (lehrer == null) {
+            return "-";
+        }
+        return lehrer.getVorname() + " " + lehrer.getNachname();
     }
 
     private static String formatSchuelerName(Schueler schueler) {
