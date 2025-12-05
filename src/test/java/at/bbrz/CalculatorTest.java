@@ -45,4 +45,10 @@ class CalculatorTest {
         calculator = new Calculator(-5,-7);
         assertEquals(35, calculator.multiply());
     }
+
+    @Test
+    void calculateWithMaxValues_shouldReturnCorrectResult() {
+        calculator = new Calculator(Integer.MAX_VALUE,1);
+        assertEquals(Integer.MIN_VALUE, calculator.sum());
+    }
 }
