@@ -39,7 +39,14 @@ public class Zeugnis {
 
     public void addEintrag(ZeugnisEintrag eintrag) {
         Objects.requireNonNull(eintrag, "Zeugniseintrag darf nicht null sein");
-        removeEintrag(eintrag.getFach());
+
+        for (ZeugnisEintrag zeugnisEintrag : eintraege) {
+            if (zeugnisEintrag.getFach() == eintrag.getFach()) {
+                throw new IllegalArgumentException("Fach " + eintrag.getFach()
+                        + " wurde bereits eingetragen");
+            }
+        }
+
         this.eintraege.add(eintrag);
     }
 
@@ -64,7 +71,8 @@ public class Zeugnis {
         int summe = eintraege.stream()
                 .mapToInt(e -> e.getNote().getWert())
                 .sum();
-        return (double) summe / eintraege.size();
+
+        return Math.floor(((double) summe / eintraege.size() * 100)) / 100;
     }
 
     @Override
