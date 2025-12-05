@@ -48,8 +48,8 @@ class DoubleCalculatorTest {
 
     @Test
     void calculateWithMaxValues_shouldReturnCorrectResult() {
-        doubleCalculator = new DoubleCalculator(Integer.MAX_VALUE,1);
-        assertEquals(Integer.MIN_VALUE, doubleCalculator.sum());
+        doubleCalculator = new DoubleCalculator(Double.MAX_VALUE,1000);
+        assertEquals(Double.MAX_VALUE, doubleCalculator.sum());
     }
 
     @Test
@@ -68,13 +68,13 @@ class DoubleCalculatorTest {
     @Test
     void calculateDivisionOfTwoNumbers_shouldReturnResultWithoutDicimalPlaces() {
         doubleCalculator = new DoubleCalculator(10,3);
-        assertEquals(3, doubleCalculator.divide());
+        assertEquals(3.3333333333333335, doubleCalculator.divide());
     }
 
     @Test
     void calculateDivisionOfTwoNumbers_shouldReturnResultWithoutRounding() {
-        doubleCalculator = new DoubleCalculator(20,3); //6.6666666666
-        assertEquals(6, doubleCalculator.divide());
+        doubleCalculator = new DoubleCalculator(20,3);
+        assertEquals((20d/3), doubleCalculator.divide());
     }
 
 }
