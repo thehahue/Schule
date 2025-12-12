@@ -1,8 +1,10 @@
 package at.bbrz.calculator;
 
+// https://www.baeldung.com/java-generics
+// Not a good idea to use generics in this case
 public class GenericCalculator<T extends Number> {
-    private final T valueA;
-    private final T valueB;
+    private T valueA;
+    private T valueB;
 
     public GenericCalculator(T valueA, T valueB) {
         this.valueA = valueA;
@@ -10,6 +12,9 @@ public class GenericCalculator<T extends Number> {
     }
 
     public Double sum() {
+        if (valueA instanceof Integer && valueB instanceof Integer) {
+            return (double) ((Integer) valueA.intValue() + valueB.intValue());
+        }
         return valueA.doubleValue() + valueB.doubleValue();
     }
 
@@ -26,7 +31,7 @@ public class GenericCalculator<T extends Number> {
             throw new ArithmeticException("Division by zero");
         }
         if (valueA instanceof Integer && valueB instanceof Integer) {
-            return (double) ((Integer)valueA.intValue() / valueB.intValue());
+            return (double) ((Integer) valueA.intValue() / valueB.intValue());
         }
         return valueA.doubleValue() / valueB.doubleValue();
     }
